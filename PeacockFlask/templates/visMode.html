@@ -1,9 +1,60 @@
 {% extends "index.html" %}
 {% block content %}
-<div class="visulation-boxes">
-    <div class="box">
-        <div class="left-side">
-            <div class="box-topic">TBA</div>
+<div class="home-content">
+    <form id="plot-submit" action="#" method="POST">
+        <div class="visulation-boxes">
+
+            <div class="box">
+                <div class="right-side">
+                    <div class="vis-box-topic">Select account entitlement?</div>
+                    <div class="box-select">
+                        <select name="tierValue" id="tier-value">
+                            <option value="Free Non-Pay">Free Non-Pay</option>
+                            <option value="Premium Pay">Premium Pay</option>
+                            <option value="Premium Non-Pay">Premium Non-Pay</option>
+                            <option value="Premium Plus Pay">PremiumPlus Pay</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="box">
+                <div class="right-side">
+                    <div class="vis-box-topic">Select predictor variable.</div>
+                    <div class="box-select">
+                        <select name="xValue" id="x-value">
+                            {% for key in plot_x_selections %}
+                                {% for item in plot_x_selections[key] %}
+                                    <option value="{{item}}">{{ item }}</option>
+                                {% endfor %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="box">
+                <div class="right-side">
+                    <div class="vis-box-topic">Select response variable.</div>
+                    <div class="box-select">
+                        <select name="yValue" id="y-value">
+                            {% for key in plot_y_selections %}
+                                {% for item in plot_y_selections[key] %}
+                                    <option value="{{item}}">{{ item }}</option>
+                                {% endfor %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="submit-box">
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+    <div class="plot-boxes">
+        <div class="plot-display-box">
+            <img src='data:image/png;base64,{{data}}'/>
         </div>
     </div>
 </div>
